@@ -8,6 +8,7 @@ module.exports = {
       },
       colors: {
         'deep-blue': '#0f172a',
+        'second-deep-blue': '#162032',
         'slate-gray': '#8f9fb9',
       },
     },
