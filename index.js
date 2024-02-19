@@ -1,21 +1,30 @@
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+const navAPropos = document.getElementById('nav-a-propos')
+const navProjets = document.getElementById('nav-projets')
+const navParcours = document.getElementById('nav-parcours')
+const sectionAPropos = document.getElementById('a-propos');
+const sectionProjets = document.getElementById('projets');
+const sectionParcours = document.getElementById('parcours');
 
+window.addEventListener('scroll', function() {
+  // Obtenir la position de défilement actuelle
+  let scrollPosition = window.scrollY;
 
+  // Calculer les positions des sections
+  let aProposPosition = sectionAPropos.offsetTop;
+  let projetsPosition = sectionProjets.offsetTop;
+  let parcoursPosition = sectionParcours.offsetTop;
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.defaults({ ease: 'none', duration: 2 });
+  // Réinitialisez toutes les classes
+  [navAPropos, navProjets, navParcours].forEach(nav => {
+    nav.classList.remove('text-cyan-400', 'font-bold');
+  });
 
-const tl = gsap.timeline();
-tl.from('#projets', { xPercent: -100 })
-  .from('#parcours', { xPercent: 100 });
-
-/*ScrollTrigger.create({
-  animation: tl,
-  trigger: '#main',
-  start: 'top top',
-  end: '+=4000',
-  scrub: true,
-  pin: true,
-  anticipatePin: 1,
-});*/
+  // Mettre à jour la classe en fonction de la position de défilement
+  if (scrollPosition >= parcoursPosition - 75) {
+    navParcours.classList.add('text-cyan-400', 'font-bold');
+  } else if (scrollPosition >= projetsPosition - 75) {
+    navProjets.classList.add('text-cyan-400', 'font-bold');
+  } else {
+    navAPropos.classList.add('text-cyan-400', 'font-bold');
+  }
+});
