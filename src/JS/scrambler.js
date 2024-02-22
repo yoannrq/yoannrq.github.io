@@ -19,7 +19,9 @@ class TextScramble {
    */
   setText(newText) {
     const oldText = this.el.innerText; // The current text in the element
+    // Determine the longer length between old and new text
     const length = Math.max(oldText.length, newText.length);
+    // Promise to be resolved when the effect is complete
     const promise = new Promise((resolve) => this.resolve = resolve);
     this.queue = []; // Queue of characters transitions
 
@@ -56,7 +58,7 @@ class TextScramble {
           char = this.randomChar(); // Select a random scramble character
           this.queue[i].char = char; // Update the character in the queue
         }
-        output += `<span class="dud">${char}</span>`; // Use a span for styling the scramble character
+        output += char;
       } else {
         output += from; // Use the original character
       }
