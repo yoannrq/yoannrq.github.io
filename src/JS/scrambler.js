@@ -99,6 +99,23 @@ const navToScramble = [
 let navElementCount = 0; // Counter to keep track of the current navigation element being scrambled
 
 /**
+ * Function to make profil pic appear
+ */
+const image = document.getElementById('profil-pic');
+let opacity = 0;
+
+const apparition = () => {
+  setInterval(() => {
+    if (opacity < 1) {
+      opacity += 0.1;
+      image.style.opacity = opacity;
+    } else {
+      clearInterval(apparition);
+    }
+  }, 100);
+};
+
+/**
  * Initiates scrambling effect for navigation items in a sequential manner.
  * @param {Object} row - The text and container to apply the scrambling effect to.
  */
@@ -110,6 +127,8 @@ const navScrambling = (row) => {
     if (navElementCount < navToScramble.length) {
       // Schedule the next scramble with a slight delay for a sequential effect
       setTimeout(() => navScrambling(navToScramble[navElementCount]), 150);
+    } else {
+      apparition();
     }
   });
 };
